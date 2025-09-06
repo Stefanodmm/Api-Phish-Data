@@ -1,28 +1,18 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/test",
-      "dest": "/test-api.html"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    }
-  ],
   "functions": {
     "api/**/*.js": {
       "runtime": "nodejs18.x"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/test",
+      "destination": "/test-api.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ]
 }
+
