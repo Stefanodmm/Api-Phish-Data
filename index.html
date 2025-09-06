@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Notas - API</title>
+    <link rel="stylesheet" href="notes-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📝 Sistema de Notas</h1>
+            <p class="subtitle">API para gestionar información - Todo se guarda y muestra automáticamente</p>
+            <div class="header-actions">
+                <button id="refreshBtn" class="btn btn-primary">🔄 Actualizar</button>
+                <button id="testApiBtn" class="btn btn-secondary">🧪 Probar API</button>
+                <a href="test-api.html" class="btn btn-outline">🧪 Probador Avanzado</a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Sección para enviar nueva nota -->
+            <section class="add-note-section">
+                <h2>Enviar Nueva Información</h2>
+                <form id="addNoteForm" class="note-form">
+                    <div class="input-group">
+                        <label for="noteTitle">Título (opcional):</label>
+                        <input type="text" id="noteTitle" placeholder="Título de la nota...">
+                    </div>
+                    <div class="input-group">
+                        <label for="noteContent">Contenido:</label>
+                        <textarea id="noteContent" placeholder="Escribe aquí la información que quieres guardar..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">💾 Guardar Información</button>
+                </form>
+            </section>
+
+            <!-- Información de la API -->
+            <section class="api-info">
+                <h3>📡 Información de la API</h3>
+                <div class="api-endpoints">
+                    <div class="endpoint">
+                        <strong>POST:</strong> <code>/api/save-note</code>
+                        <p>Envía información para guardar</p>
+                    </div>
+                    <div class="endpoint">
+                        <strong>GET:</strong> <code>/api/get-notes</code>
+                        <p>Obtiene toda la información guardada</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading indicator -->
+            <div id="loadingIndicator" class="loading">
+                <div class="spinner"></div>
+                <p>Cargando información...</p>
+            </div>
+
+            <!-- Sección de notas -->
+            <section class="notes-section">
+                <h2>📋 Información Guardada</h2>
+                <div id="notesContainer" class="notes-container">
+                    <!-- Las notas se cargarán aquí dinámicamente -->
+                </div>
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <h3>📝 No hay información guardada</h3>
+                    <p>Envía información a la API y aparecerá aquí automáticamente.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal para probar API -->
+        <div id="testModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🧪 Probar API</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Envía una petición POST a la API con datos de prueba:</p>
+                    <pre id="testRequest"></pre>
+                    <button id="sendTestRequest" class="btn btn-primary">Enviar Petición de Prueba</button>
+                    <div id="testResponse" class="test-response"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast notifications -->
+        <div id="toastContainer" class="toast-container"></div>
+    </div>
+
+    <script src="notes-script.js"></script>
+</body>
+</html>
